@@ -8,8 +8,6 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
-# Use sqlite3 as the database for Active Record
-gem 'sqlite3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -49,7 +47,25 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'capistrano', '~> 3.4.1'
+  gem 'capistrano-docker', github: 'netguru/capistrano-docker'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'therubyracer'
+gem 'less-rails-bootstrap'
+gem 'jquery-easing-rails'
+gem 'font-awesome-rails'
+gem 'jquery-rails' # JavaScript library
+gem 'slim' #Default html templating
+gem 'ckeditor' # WYSIWYG text editor
+gem 'cocoon' # handle nested forms
+gem 'material_design_uni', git: 'git@gitlab.akb-it.ru:uni2019/material_design_uni.git'
+gem 'stomp'
+gem 'breadcrumbs_on_rails'
+gem 'simple-navigation'
+gem 'bootstrap-tagsinput-rails'
+gem 'typeahead-rails'
+gem 'recaptcha', require: 'recaptcha/rails'
+gem 'dotenv-rails'
