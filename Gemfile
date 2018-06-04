@@ -9,7 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
@@ -63,7 +63,7 @@ gem 'jquery-rails' # JavaScript library
 gem 'slim' #Default html templating
 gem 'ckeditor' # WYSIWYG text editor
 gem 'cocoon' # handle nested forms
-gem 'material_design_uni', git: 'git@gitlab.akb-it.ru:uni2019/material_design_uni.git'
+#gem 'material_design_uni', git: 'git@gitlab.akb-it.ru:uni2019/material_design_uni.git'
 gem 'stomp'
 gem 'breadcrumbs_on_rails'
 gem 'simple-navigation'
