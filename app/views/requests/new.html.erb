@@ -1,0 +1,16 @@
+<h1>Создаем запрос</h1>
+<%= form_with scope: :request, url: request_path, local: true do |form| %>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_field :description %>
+  </p>
+
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_area :text %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

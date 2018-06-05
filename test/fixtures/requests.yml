@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: MyString
+  rawHeaders: MyString
+  description: MyString
+  method: MyString
+  url: MyString
+  data: one
+  dataMode: MyString
+  tests: MyString
+  name: MyString
+  rawModeData: MyString
+  responce: one
+  pathVariables: 
+
+two:
+  id: MyString
+  rawHeaders: MyString
+  description: MyString
+  method: MyString
+  url: MyString
+  data: two
+  dataMode: MyString
+  tests: MyString
+  name: MyString
+  rawModeData: MyString
+  responce: two
+  pathVariables: 

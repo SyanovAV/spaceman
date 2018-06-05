@@ -4,7 +4,7 @@ default: &default
   host: localhost
   database: spaceman
   username: spaceman
-  password:
+  password: spaceman
   pool: 5
 
 development:
