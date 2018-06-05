@@ -1,4 +1,7 @@
 class RequestsController < ApplicationController
   def new
-    end
+  end
+  def create
+    render plain: params[:request].inspect
+  end
 end
