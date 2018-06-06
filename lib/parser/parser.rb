@@ -1,91 +1,49 @@
-# class Parser
-#   include Requests::RequestsLogger
-#   cattr_accessor :client
-#   require 'message_bus/connection'
-#   require 'json'
-#   require 'active_support/all'
-#   require 'rexml/document'
-#   require 'nokogiri'
-#   include REXML
-#
-#   def initialize
-#
-#   end
-#
-#   def parser!
-#     queue = Connection.load_incoming_queue_settings()[:name]
-#     @@bus_logger.info("starting listen queue: #{queue}")
-#     self.client.subscribe(queue, ack: :client) do |message|
-#       @@bus_logger.info("incoming message: #{queue}")
-#       m = ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(message.body))
-#       processable = self.handlers.map{|x| x.can_process?(m)}
-#       unless processable.any?
-#         @@bus_logger.warn("WARNING! Unprocessable requests: #{m}")
-#       else
-#         self.handlers.each do |h|
-#           if h.can_process?(m)
-#             begin
-#               h.process(m)
-#               self.client.acknowledge(message)
-#             rescue PG::UnableToSend, PG::ConnectionBad
-#               sleep 5
-#               exit
-#             rescue ActiveRecord::StatementInvalid => e
-#               exit if e.cause.class.in?([PG::UnableToSend, PG::ConnectionBad, PG::AdminShutdown])
-#               raise e
-#             rescue => e
-#               Airbrake.notify(e)
-#               puts e.backtrace
-#             end
-#           end
-#         end
-#       end
-#       @@bus_logger.warn("Message: #{m}")
-#       self.client.acknowledge(message)
-#       @@bus_logger.info("end message: #{queue}")
-#     end
-#   end
-#
-# end
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-# filelog = File.new("servicemix.log")
-# filemessage = File.new("Test.log", "w+")
-# #filemessage1 = File.new("Test.log")
-# ammofile = File.new("ammo.txt", "w")
-# uprdu = 0
-# accreditation = 0
-# accreditation2 = 0
-# hotel = 0
-# catering = 0
-# schedule = 0
-# volunteer = 0
-# contracts = 0
-# portal = 0
-# media = 0
-# guide = 0
-# promo_volunteers = 0
-# suz = 0
-# opendj_ui = 0
-# transport = 0
-# command = 0
-# nsi = 0
-# ugames = 0
-# skud = 0
-# support = 0
-# booking = 0
-# str = 0
-#
+class Parser
+  include Requests::RequestsLogger
+  cattr_accessor :client
+  require 'message_bus/connection'
+  require 'json'
+  require 'active_support/all'
+  require 'rexml/document'
+  require 'nokogiri'
+  include REXML
+
+  def initialize
+
+  end
+
+  def parser!
+      file = File.new("")
+      file.each_with_index do |message, i|
+      m = ActiveSupport::HashWithIndifferentAccess.new(JSON.parse(message))
+      processable = self.handlers.map{|x| x.can_process?(m)}
+      unless processable.any?
+        @@message_logger.warn("WARNING! Unprocessable requests: #{m}")
+      else
+        self.handlers.each do |h|
+          if h.can_process?(m)
+            begin
+              h.process(m)
+            rescue PG::UnableToSend, PG::ConnectionBad
+              sleep 5
+              exit
+            rescue ActiveRecord::StatementInvalid => e
+              exit if e.cause.class.in?([PG::UnableToSend, PG::ConnectionBad, PG::AdminShutdown])
+              raise e
+            end
+          end
+        end
+      end
+      @@message_logger.warn("Message: #{m}")
+     end
+  end
+
+end
+
+
+
+
+
 # filelog.each_with_index do |line, i|
 #   if line.match(/(New message .*)/)
 #     filemessage.puts(line)

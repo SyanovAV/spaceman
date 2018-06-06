@@ -1,5 +1,5 @@
 <h1>Создаем запрос</h1>
-<%= form_with scope: :request, url: request_path, local: true do |form| %>
+<%= form_with scope: :request, url: requests_path, local: true do |form| %>
   <p>
     <%= form.label :body %><br>
     <%= form.text_field :description %>
