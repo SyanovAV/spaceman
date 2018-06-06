@@ -1,7 +1,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  encoding: SQL_ASCII
   host: localhost
+  port: 5432
   database: spaceman
   username: spaceman
   password: spaceman
@@ -20,4 +22,4 @@ dev:
   <<: *default
 
 demo:
-  <<: *default
+  <<: *default  <<: *default
