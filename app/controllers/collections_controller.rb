@@ -1,8 +1,4 @@
 class CollectionsController < ApplicationController
-  def new
-  end
-
-
   def index
     @collection = Collection.all
   end
@@ -11,16 +7,22 @@ class CollectionsController < ApplicationController
     @collection = Collection.find(params[:id])
   end
 
-  def create
-    @collection = Collection.new(collection_params)
-  #  @requests = Request.new(params[:collection].permit(:raw_headers, :url, :method))
-    @collection.save
-  #  @requests.save
-    redirect_to @collection
+  def new
+    @collection = Collection.new
   end
 
   def edit
     @collection = Collection.find(params[:id])
+  end
+
+  def create
+    @collection = Collection.new(collection_params)
+
+    if @collection.save
+      redirect_to @collection
+    else
+      render 'new'
+    end
   end
 
   def update
@@ -33,7 +35,15 @@ class CollectionsController < ApplicationController
     end
   end
 
+  def destroy
+    @collection = Collection.find(params[:id])
+    @collection.destroy
+
+    redirect_to collections_path
+  end
+
   private
+
   def collection_params
     params.require(:collection).permit(:name, :description)
   end
