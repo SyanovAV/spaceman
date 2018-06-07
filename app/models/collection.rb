@@ -1,4 +1,4 @@
 class Collection < ApplicationRecord
-  belongs_to :request
-  belongs_to :folder
+  belongs_to :request, optional: true
+  belongs_to :folder, optional: true
 end

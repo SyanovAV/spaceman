@@ -1,5 +1,19 @@
-<h1>Создаем коллекцию</h1>
-<%= form_with scope: :collection, url: collections_path, local: true do |form| %>
+<h1>Редактируем коллекцию</h1>
+<%= form_with model:@collection, local: true do |form| %>
+  <% if @collection.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@collection.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @collection.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <p>
     <%= form.label :Название %><br>
     <%= form.text_field :name %>
