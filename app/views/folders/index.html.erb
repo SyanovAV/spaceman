@@ -1,0 +1,23 @@
+<h1>Все запросы в данной коллекции</h1>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Описание</th>
+    <th></th>
+  </tr>
+
+  <% @request.each do |request| %>
+    <tr>
+      <td><%= link_to request.name, request_path(request)%></td>
+      <td><%= request.description %></td>
+      <td><%= link_to 'Открыть', request_path(request, collection_id: params[:collection_id], folder_id: params[:folder_id]) %></td>
+      <td><%= link_to 'Редактировать', edit_request_path(request, collection_id: params[:collection_id], folder_id: params[:folder_id]) %></td>
+      <td><%= link_to 'Удалить', request_path(request, collection_id: params[:collection_id]), method: :delete, data: { confirm: 'Ты хорошо подумал?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Создать новый запрос', new_collection_request_path(collection_id: params[:collection_id]) %>
+<%= link_to 'Назад', collections_path %>
+

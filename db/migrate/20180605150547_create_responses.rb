@@ -6,7 +6,7 @@ class CreateResponses < ActiveRecord::Migration[5.1]
       t.string :status
       t.string :value
       t.string :text
-      t.references :response_code, index: true
+      t.references :request, index: true
 
       t.timestamps
     end

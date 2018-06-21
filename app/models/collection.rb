@@ -1,4 +1,6 @@
 class Collection < ApplicationRecord
-  belongs_to :request, optional: true
-  belongs_to :folder, optional: true
+  has_many :requests
+  has_many :folder
+  validates :name, presence: true,
+            length: { minimum: 5 }
 end

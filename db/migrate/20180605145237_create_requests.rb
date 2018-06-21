@@ -6,13 +6,12 @@ class CreateRequests < ActiveRecord::Migration[5.1]
       t.string :description
       t.string :method
       t.string :url
-      t.references :data, index: true
       t.string :data_mode
       t.string :tests
       t.string :name
       t.string :raw_mode_data
-      t.references :responce, index: true
       t.string :path_variables
+      t.references :collection, index: true
 
       t.timestamps
     end

@@ -5,6 +5,7 @@ class CreateFolders < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :description
       t.string :order
+      t.references :collection, index: true
 
       t.timestamps
     end

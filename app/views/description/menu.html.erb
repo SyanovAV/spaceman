@@ -1,0 +1,55 @@
+<body>
+
+<div class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+  <a class="navmenu-brand" href="#">Название сайта</a>
+  <ul class="nav navmenu-nav">
+    <li class="active"><a href="#">Пункт 1</a></li>
+    <li><a href="#">Пункт 2</a></li>
+    <li><a href="#">Пункт 3</a></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Пункт 4 <b class="caret"></b></a>
+      <ul class="dropdown-menu navmenu-nav">
+        <li><a href="#">Подпункт 4.1</a></li>
+        <li><a href="#">Подпункт 4.2</a></li>
+        <li><a href="#">Подпункт 4.3</a></li>
+        <li class="divider"></li>
+        <li class="dropdown-header">Заголовок для подпунктов</li>
+        <li><a href="#">Подпункт 4.4</a></li>
+        <li><a href="#">Подпункт 4.5</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".navmenu" data-canvas="body">
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+  </button>
+</div>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Навигационное меню с эффектом толкания (push)</h1>
+  </div>
+  <p>Lorem ipsum dolor sit amet. Odio dignissimos ducimus, qui blanditiis praesentium voluptatum. Vel eum fugiat, quo voluptas. Obcaecati cupiditate non numquam eius modi tempora. Temporibus autem quibusdam et voluptates repudiandae sint et expedita. Sunt, explicabo nesciunt, neque porro quisquam est, omnis dolor sit. Corporis suscipit laboriosam, nisi. Autem vel eum fugiat, quo minus id, quod maxime placeat facere. Debitis aut perferendis doloribus asperiores repellat. aperiam. Numquam eius modi tempora incidunt, ut aut rerum hic tenetur. Accusantium doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore. Hic tenetur a sapiente delectus, ut aliquid ex ea commodi autem. Odio dignissimos ducimus, qui dolorem ipsum quia. Velit, sed quia voluptas sit, aspernatur.</p>
+</div>
+
+
+<!-- jQuery -->
+<script src="/examples/vendors/jquery/jquery-3.3.1.min.js"></script>
+<!-- Bootstrap -->
+<script src="/examples/vendors/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+
+<script src="/assets/demo/jasny-bootstrap/js/jasny-bootstrap.min.js"></script>
+
+</body>
+
+
+
+
+
+<h1>Наш Description</h1>
+<%= link_to 'Все коллекции', controller: 'collections' %>
+<%= link_to 'Новая коллекция', new_collection_path %>

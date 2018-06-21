@@ -1,0 +1,8 @@
+/ = favicon_link_tag 'favicon.ico'
+title= content_for?(:title) ? yield(:title) : t('application.title')
+meta content="width=device-width, initial-scale=1.0" name="viewport"
+= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+= javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+= javascript_include_tag :defaults if controller_name == 'registrations'
+/ = Gon::Base.render_data
+= csrf_meta_tags

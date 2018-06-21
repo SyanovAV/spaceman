@@ -11,10 +11,6 @@ class CollectionsController < ApplicationController
     @collection = Collection.new
   end
 
-  def edit
-    @collection = Collection.find(params[:id])
-  end
-
   def create
     @collection = Collection.new(collection_params)
 
@@ -23,6 +19,10 @@ class CollectionsController < ApplicationController
     else
       render 'new'
     end
+  end
+
+  def edit
+    @collection = Collection.find(params[:id])
   end
 
   def update
@@ -43,8 +43,9 @@ class CollectionsController < ApplicationController
   end
 
   private
-
   def collection_params
     params.require(:collection).permit(:name, :description)
   end
+
+
 end

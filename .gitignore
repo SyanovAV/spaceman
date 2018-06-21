@@ -12,10 +12,19 @@
 /db/*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
+/config/database.yml
+/config/settings.yml
+/log/*.log
+/tmp
+/public/system/
+/public/uploads/
+.idea/
+database.env
+dump.rdb
+.env
+test.*
+/config/ci/password.txt
+/run_parallel.sh
 
 /node_modules
 /yarn-error.log

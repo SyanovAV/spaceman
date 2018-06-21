@@ -10,4 +10,6 @@
   <%= @collection.description %>
 </p>
 
+<%= link_to 'Папки', collection_folders_path(@collection) %>
+<%= link_to 'Запросы', collection_requests_path(@collection) %>
 <%= link_to 'Назад', collections_path %>

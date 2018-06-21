@@ -1,0 +1,48 @@
+
+
+/ <!--<div id="wrapper">-->
+/ <!--<nav class="navbar-default navbar navbar-static-top" role="navigation" style="margin-bottom: 0">-->
+/ <!--  <div class="navbar-header">-->
+/ <!--      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" style="display: none">-->
+/ <!--        <span class="sr-only">Toggle navigation</span>-->
+/ <!--        <span class="icon-bar"></span>-->
+/ <!--        <span class="icon-bar"></span>-->
+/ <!--        <span class="icon-bar"></span>-->
+/ <!--      </button>-->
+/ <!--      <a class="navbar-brand" href="#">Spaceman v1.0</a>-->
+/ <!--  </div>-->
+/ <!--</nav>-->
+/ <!--</div>-->
+/ <!--<div class="navbar-default sidebar">-->
+/ <!--  <div class="sidebar-nav navbar-collapse">-->
+/ <!--    <i class="fa fa-plus-circle fa-fw ul li"></i>-->
+/ <!--  <a class="navmenu-brand" href="#"></a>-->
+/ <!--  <ul class="nav" id="side-menu">-->
+/ <!--    <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-sitemap fa-fw"></i> Коллекция 1</a></li>-->
+/ <!--    <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-sitemap fa-fw"></i> Коллекция 2</a></li>-->
+/ <!--    <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-sitemap fa-fw"></i> Коллекция 3</a></li>-->
+/ <!--    <li>-->
+/ <!--      <a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-sitemap fa-fw"></i> Коллекция 4 <span class="fa arrow" style="float: left"></span></a>-->
+/ <!--      <ul class="nav nav-second-level collapse" aria-expanded="true">-->
+/ <!--        <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-folder fa-fw"></i> Папка 1 <span class="fa arrow" style="float: left"></span></a>-->
+/ <!--          <ul class="nav nav-third-level collapse">-->
+/ <!--            <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-code fa-fw"></i>Запрос 1</a></li>-->
+/ <!--          </ul>-->
+/ <!--        </li>-->
+/ <!--        <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-code fa-fw"></i>Запрос 2</a></li>-->
+/ <!--        <li><a href="#"><span class="fa fa-ellipsis-h" style="float: right"></span> <i class="fa fa-folder fa-fw"></i> Папка 2</a></li>-->
+/ <!--      </ul>-->
+/ <!--    </li>-->
+/ <!--  </ul>-->
+/ <!--</div>-->
+/ <!--</div>-->
+.container
+  .page-header
+    h1
+      | Spaceman - мощный инструмент тестирования API!
+    p
+      | Мы делаем прекрасный продукт, c потрясающим API, необходимым для работы front части системы "Интранет".
+            Spaceman используется многоими разработчиками, тестировщиками и аналитиками на нашем проекте, и это число постоянно растет.
+            Мы предоставляем разработчикам наиболее мощное решение для разработки, описания и тестирования API".
+    = link_to ('Все коллекции'), controller: 'collections'
+    = link_to ('Новая коллекция'), new_collection_path

@@ -1,0 +1,47 @@
+<%= simple_form_for [:collection, @request], local: true do |form| %>
+  <% if @request.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@request.errors.count, "ошибки") %> при сохранении:
+      </h2>
+      <ul>
+        <% @request.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :Название %><br>
+    <%= form.input :name %>
+  </p>
+
+  <p>
+    <%= form.label :Описание %><br>
+    <%= form.text_area :description %>
+  </p>
+
+  <p>
+    <%= form.label :Raw_headers %><br>
+    <%= form.input :raw_headers %>
+  </p>
+
+  <p>
+    <%= form.label :Url %><br>
+    <%= form.input :url %>
+  </p>
+
+  <p>
+    <%= form.hidden_field :collection_id, value: params[:collection_id] %><br>
+    <%= form.hidden_field :folder_id, value: params[:folder_id] %><br>
+     </p>
+  <!--  <p>-->
+  <!--    <%#= form.label :Method %><br>-->
+  <%#= form.select :method %>
+  <!--  </p>-->
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

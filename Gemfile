@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'bootstrap_sb_admin_base_v2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -71,3 +72,5 @@ gem 'bootstrap-tagsinput-rails'
 gem 'typeahead-rails'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'dotenv-rails'
+gem 'sprockets', '3.6.3'
+gem 'simple_form'
