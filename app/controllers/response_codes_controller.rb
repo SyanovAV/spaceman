@@ -1,26 +1,26 @@
 class ResponseCodesController < ApplicationController
   def index
-    @collection = Collection.find(params[:collection_id])
+    @collection = Item.find(params[:collection_id])
     @request = @collection.requests.all
   end
 
   def show
-    @collection = Collection.find(params[:collection_id])
+    @collection = Item.find(params[:collection_id])
     @request = @collection.find(params[:id])
   end
 
   def new
-    @collection = Collection.new
+    @collection = Item.new
   end
 
   def edit
-    @collection = Collection.find(params[:id])
+    @collection = Item.find(params[:id])
   end
 
   def update
-    @collection = Collection.find(params[:id])
+    @collection = Item.find(params[:id])
 
-    if @collection.update(collection_params)
+    if @collection.update(item_params)
       redirect_to @collection
     else
       render 'edit'
@@ -36,7 +36,7 @@ class ResponseCodesController < ApplicationController
 
 
   def create
-    @collection = Collection.find(params[:collection_id])
+    @collection = Item.find(params[:collection_id])
     @request = @collection.request.create(request_params)
     #redirect_to request_path(@request)
   end

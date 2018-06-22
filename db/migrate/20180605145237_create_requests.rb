@@ -11,7 +11,7 @@ class CreateRequests < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :raw_mode_data
       t.string :path_variables
-      t.references :collection, index: true
+      t.references :item, index: true
 
       t.timestamps
     end

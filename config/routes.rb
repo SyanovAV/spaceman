@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'description#index'
   get 'description/index'
 
-  resources :collections do
+  resources :items do
     resource :folders, shallow: true
     resources :requests, shallow: true
   end

@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180609103156) do
+ActiveRecord::Schema.define(version: 20180605150620) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "collections", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.string "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "data", force: :cascade do |t|
     t.string "key"
@@ -32,17 +24,6 @@ ActiveRecord::Schema.define(version: 20180609103156) do
     t.index ["request_id"], name: "index_data_on_request_id"
   end
 
-  create_table "folders", force: :cascade do |t|
-    t.string "folder_id"
-    t.string "name"
-    t.string "description"
-    t.string "order"
-    t.bigint "collection_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["collection_id"], name: "index_folders_on_collection_id"
-  end
-
   create_table "headers", force: :cascade do |t|
     t.string "name"
     t.string "key"
@@ -50,6 +31,16 @@ ActiveRecord::Schema.define(version: 20180609103156) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "collection_id"
+    t.string "name"
+    t.string "description"
+    t.string "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["collection_id"], name: "index_items_on_collection_id"
   end
 
   create_table "requests", force: :cascade do |t|
@@ -63,12 +54,10 @@ ActiveRecord::Schema.define(version: 20180609103156) do
     t.string "name"
     t.string "raw_mode_data"
     t.string "path_variables"
-    t.bigint "collection_id"
+    t.bigint "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "folder_id"
-    t.index ["collection_id"], name: "index_requests_on_collection_id"
-    t.index ["folder_id"], name: "index_requests_on_folder_id"
+    t.index ["item_id"], name: "index_requests_on_item_id"
   end
 
   create_table "response_codes", force: :cascade do |t|
@@ -91,5 +80,4 @@ ActiveRecord::Schema.define(version: 20180609103156) do
     t.index ["request_id"], name: "index_responses_on_request_id"
   end
 
-  add_foreign_key "requests", "folders"
 end

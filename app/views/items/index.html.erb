@@ -1,0 +1,22 @@
+<h1>Все коллекции</h1>
+
+<table>
+  <tr>
+    <th>Название</th>
+    <th>Описание</th>
+    <th></th>
+  </tr>
+
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= link_to item.name, item_path(item)%></td>
+      <td><%= item.description %></td>
+      <td><%= link_to 'Открыть', item_path(item) %></td>
+      <td><%= link_to 'Редактировать', edit_item_path(item) %></td>
+      <td><%= link_to 'Удалить', item_path(item), method: :delete, data: {confirm: 'Ты хорошо подумал?' } %></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'Создать новую коллекцию', new_item_path %>
+

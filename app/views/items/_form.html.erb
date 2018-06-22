@@ -1,11 +1,11 @@
-<%= simple_form_for @collection, local: true do |form| %>
-  <% if @collection.errors.any? %>
+<%= simple_form_for @item, local: true do |form| %>
+  <% if @item.errors.any? %>
     <div id="error_explanation">
       <h2>
-        <%= pluralize(@collection.errors.count, "ошибки") %> при сохранении:
+        <%= pluralize(@item.errors.count, "ошибки") %> при сохранении:
       </h2>
       <ul>
-        <% @collection.errors.full_messages.each do |msg| %>
+        <% @item.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>

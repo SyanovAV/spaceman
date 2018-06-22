@@ -1,4 +1,3 @@
-- @resources.each do |resource|
-  - cache [controller_name, action_name, current_user&.id, resource] do
-    li
-      = link_to resource.name collection_path(resource)
+- @menu_items.each do |resource|
+  li
+    = link_to resource.name, item_path(resource)

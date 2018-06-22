@@ -1,7 +1,7 @@
 class NavigationController < ApplicationController
 
   def show
-    @resource = Collection.find(params[:id])
+    @resource = Item.all
     @resources = @resource.tags.map{ |x| x.collections.where.not(id: params[:id]) }.flatten.uniq
 
     return redirect_to action: 'index'

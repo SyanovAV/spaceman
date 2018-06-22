@@ -1,5 +1,5 @@
 class AddFolderIdToRequest < ActiveRecord::Migration[5.1]
   def change
-    add_reference :requests, :folder, foreign_key: true
+    add_reference :requests, :items, foreign_key: true
   end
 end
