@@ -1,5 +1,5 @@
-/ = favicon_link_tag 'favicon.ico'
-title= content_for?(:title) ? yield(:title) : t('application.title')
+= favicon_link_tag 'tools.svg'
+title = content_for?(:title) ? yield(:title) : t('application.title')
 meta content="width=device-width, initial-scale=1.0" name="viewport"
 = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
 = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
