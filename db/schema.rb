@@ -34,13 +34,13 @@ ActiveRecord::Schema.define(version: 20180605150620) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.bigint "collection_id"
+    t.bigint "parent_id"
     t.string "name"
     t.string "description"
     t.string "order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["collection_id"], name: "index_items_on_collection_id"
+    t.index ["parent_id"], name: "index_items_on_parent_id"
   end
 
   create_table "requests", force: :cascade do |t|

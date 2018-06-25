@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
 
   def menu_render
     @menu_items = Item.all
-    @collection = @menu_items.where(collection_id: nil).includes(:folders)
+    @resource = @menu_items.where(parent_id: nil).includes(:childrens)
   end
 end

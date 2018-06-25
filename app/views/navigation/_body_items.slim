@@ -1,9 +1,9 @@
-- @collection.each do |collection|
+- @resource.each do |resource|
   li
-    = link_to item_path(collection) do
+    = link_to item_path(resource) do
       i.fa.fa-database
       span.navbar-icon
-      = " #{collection.name}"
+      = " #{resource.name}"
       li.dropdown
         = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'true' do
           i.fa.fa-ellipsis-h.navbar-icon-edit
@@ -11,7 +11,7 @@
           li
             = link_to ('/') do
               |Редактировать
-    - collection.folders.each do |folder|
+    - resource.childrens.each do |folder|
       ul.nav.nav-second-level.collapse.in
         li
           = link_to item_path(folder) do
