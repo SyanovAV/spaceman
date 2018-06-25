@@ -1,3 +1,28 @@
-- @menu_items.each do |resource|
+- @collection.each do |collection|
   li
-    = link_to resource.name, item_path(resource)
+    = link_to item_path(collection) do
+      i.fa.fa-database
+      span.navbar-icon
+      = " #{collection.name}"
+      li.dropdown
+        = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'true' do
+          i.fa.fa-ellipsis-h.navbar-icon-edit
+        ul.dropdown-menu.dropdown-user
+          li
+            = link_to ('/') do
+              |Редактировать
+    - collection.folders.each do |folder|
+      ul.nav.nav-second-level.collapse.in
+        li
+          = link_to item_path(folder) do
+            i.fa.fa-folder.navbar-icon
+            = " #{folder.name}"
+            li.dropdown
+              = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown' , 'aria-expanded' => 'true' do
+                i.fa.fa-ellipsis-h.navbar-icon-edit
+              ul.dropdown-menu.dropdown-alerts
+                li
+                  = link_to ('/') do
+                    |Редактировать
+
+

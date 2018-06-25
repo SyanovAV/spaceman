@@ -1,19 +1,31 @@
 div id='wrapper'
-  nav.navbar-default.navbar.navbar-static-top.navbar-default-space role="navigation" style="margin-bottom: 0"
-    .navbar-header
-      button.navbar-toggle data-toggle="collapse" data-target=".navbar-collapse" style="display: none"
-        span.sr-only
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      = link_to ('Spaceman v1.0'), url_for(:only_path => false, :controller => 'description'), class: ('navbar-brand')
-  / ul.nav.navbar-top-links.navbar-right
-  /   li.dropdown
-  /     = link_to class: 'dropdown-toggle', data-toggle=>'dropdown'
-  /       i.fa.fa-user.fa-fw
-  /       i.fa.fa-caret-down
-  /
+  nav#navbar-example2.navbar.navbar-light.bg-light
+    = link_to ('Spaceman v1.0'), url_for(:only_path => false, :controller => 'description'), class: ('navbar-brand')
+    ul.nav.nav-pills
+      li.nav-item
+        a.nav-link href="#fat"  @fat
+      li.nav-item
+        a.nav-link href="#mdo"  @mdo
+      li.nav-item.dropdown
+        a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"  Dropdown
+        .dropdown-menu
+          a.dropdown-item href="#one"  one
+          a.dropdown-item href="#two"  two
+          .dropdown-divider role="separator"
+          a.dropdown-item href="#three"  three
+
 .navbar-default.sidebar.navbar-default-space
   .sidebar-nav.navbar-collapse
     ul.nav id="side-menu"
+      li.sidebar-search
+        .input-group.custom-search-form
+          input.form-control type="text" placeholder="Поиск..."
+          span.input-group-btn
+            button.btn.btn-default type="button"
+              .fa.fa-search
+      li
+        .navbar-no-action
+          h3 Коллекции:
+          .navbar-main-element
+            = link_to '<i class="fa fa-plus-circle"></i>'.html_safe, new_item_path
       = render 'navigation/body_items'
