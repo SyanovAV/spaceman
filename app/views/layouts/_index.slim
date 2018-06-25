@@ -1,0 +1,150 @@
+= render 'layouts/application/navbar'
+= render 'layouts/application/menu'
+= render 'layouts/application/actionbar'
+#page-content-wrapper
+    .container-fluid
+    .row
+        .col-lg-12
+        = render 'layouts/application/about'
+        = render 'layouts/application/collection'
+        h2#doc-api-detail
+            | API detail
+            a href="#doc-api-detail" 
+            i.glyphicon.glyphicon-link
+        | {{ range .Requests }}
+        | {{ $req := . }}
+        .request
+            h3 id=("request-{{ slugify $req.Name }}") 
+            | {{ $req.Name }}
+            a href=("#request-{{ slugify $req.Name }}") 
+                i.glyphicon.glyphicon-link
+            div
+            ul.nav.nav-tabs role="tablist" 
+                li.active role="presentation" 
+                a data-toggle="tab" href=("#request-{{ slugify $req.Name }}-desc")  Описание
+                li role="presentation" 
+                a data-toggle="tab" href=("#request-{{ slugify $req.Name }}-example-curl")  Curl
+                li role="presentation" 
+                a data-toggle="tab" href=("#request-{{ slugify $req.Name }}-example-http")  HTTP
+            .tab-content
+                .tab-pane.active id=("request-{{ slugify $req.Name }}-desc") 
+                div  { markdown $req.Description } 
+                .tab-pane id=("request-{{ slugify $req.Name }}-example-curl") 
+                pre
+                    code.hljs.curl  { curlSnippet $req } 
+                .tab-pane id=("request-{{ slugify $req.Name }}-example-http") 
+                pre
+                    code.hljs.http  { httpSnippet $req } 
+            | {{ with $req.Responses }}
+            div
+            ul.nav.nav-tabs role="tablist" 
+                | {{ range $index, $res := . }}
+                li.active end="" eq="" if="" role="presentation" 
+                a data-toggle="tab" href=("#request-{{ slugify $req.Name }}-responses-{{ $res.ID }}") 
+                    | {{ if eq (len $req.Responses) 1 }}
+                    | Response
+                    | {{ else}}
+                    | {{ $res.Name }}
+                    | {{ end }}
+                | {{ end }}
+            .tab-content
+                | {{ range $index, $res := . }}
+                .if.eq.0.end class=("tab-pane{{ $index }} active{{ }}") id=("request-{{ slugify $req.Name }}-responses-{{ $res.ID }}") 
+                table.table.table-bordered
+                    tr
+                    th style=("width: 20%;")  Status
+                    td  { $res.StatusCode }} {{ $res.Status } 
+                    | {{ range $res.Headers }}
+                    tr
+                    th style=("width: 20%;") here
+                    td  { .Value } 
+                    | {{ end }}
+                    | {{ if hasContent $res.Body }}
+                    | {{ with $example := indentJSON $res.Body }}
+                    tr
+                    td.response-text-sample colspan="2" 
+                        pre
+                        code  { $example } 
+                    | {{ end }}
+                    | {{ end }}
+                | {{ end }}
+            | {{ end }}
+            hr/
+        | {{ end }}
+        
+        
+        | {{ range .Folders }}
+        | {{ $folder := . }}
+        .endpoints-group
+            h3 id=("folder-{{ slugify $folder.Name }}") 
+            | {{ .Name }}
+            a href=("#folder-{{ slugify $folder.Name }}") 
+                i.glyphicon.glyphicon-link
+            div  { markdown $folder.Description } 
+            | {{ range $folder.Requests }}
+            | {{ $req := . }}
+            .request
+            h4 id=("request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}") 
+                | {{ $req.Name }}
+                a href=("#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}") 
+                i.glyphicon.glyphicon-link
+            div
+                ul.nav.nav-tabs role="tablist" 
+                li.active role="presentation" 
+                    a data-toggle="tab" href=("#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-desc")  Описание
+                li role="presentation" 
+                    a data-toggle="tab" href=("#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl")  Curl
+                li role="presentation" 
+                    a data-toggle="tab" href=("#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-http")  HTTP
+                .tab-content
+                .tab-pane.active id=("request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-desc") 
+                    div  { markdown $req.Description } 
+                .tab-pane id=("request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-curl") 
+                    pre
+                    code.hljs.curl  { curlSnippet $req } 
+                .tab-pane id=("request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-example-http") 
+                    pre
+                    code.hljs.http  { httpSnippet $req } 
+            | {{ with $req.Responses }}
+            div
+                ul.nav.nav-tabs role="tablist" 
+                | {{ range $index, $res := . }}
+                li.active end="" eq="" if="" role="presentation" 
+                    a data-toggle="tab" href=("#request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-responses-{{ $res.ID }}") 
+                    | {{ if eq (len $req.Responses) 1 }}
+                    | Response
+                    | {{ else}}
+                    | {{ $res.Name }}
+                    | {{ end }}
+                | {{ end }}
+                .tab-content
+                | {{ range $index, $res := . }}
+                .if.eq.0.end class=("tab-pane{{ $index }} active{{ }}") id=("request-{{ slugify $folder.Name }}-{{ slugify $req.Name }}-responses-{{ $res.ID }}") 
+                    table.table.table-bordered
+                    tr
+                        th style=("width: 20%;")  Status
+                        td  { $res.StatusCode }} {{ $res.Status } 
+                    | {{ range $res.Headers }}
+                    tr
+                        th style=("width: 20%;") here
+                        td  { .Value } 
+                    | {{ end }}
+                    | {{ if hasContent $res.Body }}
+                    | {{ with $example := indentJSON $res.Body }}
+                    tr
+                        td.response-text-sample colspan="2" 
+                        pre
+                            code  { $example } 
+                    | {{ end }}
+                    | {{ end }}
+                | {{ end }}
+            | {{ end }}
+            hr/
+            | {{ end }}
+        | {{ end }}
+script src="https://code.jquery.com/jquery-2.2.2.min.js" 
+script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" 
+javascript:
+    | $(document).ready(function() {
+        | $("table:not(.table)").addClass('table table-bordered');
+    | });

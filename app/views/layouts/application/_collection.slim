@@ -1,0 +1,16 @@
+        h2#doc-api-structures
+            | API structures
+            a href="#doc-api-structures" 
+            i.glyphicon.glyphicon-link
+        | {{ range $structures }}
+        h3 id=("struct-{{ .Name }}") 
+            | {{ .Name }}
+            a href=("#struct-{{ .Name }}") 
+            i.glyphicon.glyphicon-link
+        p  { .Description } 
+        table.table.table-bordered
+            | {{ range .Fields }}
+            tr
+            th  { .Name } 
+            td  { .Type } 
+            td  { .Description } 
