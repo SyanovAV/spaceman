@@ -1,28 +1,65 @@
-- @resource.each do |resource|
-  li
-    = link_to item_path(resource) do
-      i.fa.fa-database
-      span.navbar-icon
-      = " #{resource.name}"
-      li.dropdown
-        = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'true' do
-          i.fa.fa-ellipsis-h.navbar-icon-edit
-        ul.dropdown-menu.dropdown-user
-          li
-            = link_to ('/') do
-              |Редактировать
-    - resource.childrens.each do |folder|
-      ul.nav.nav-second-level.collapse.in
-        li
-          = link_to item_path(folder) do
-            i.fa.fa-folder.navbar-icon
-            = " #{folder.name}"
-            li.dropdown
-              = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown' , 'aria-expanded' => 'true' do
-                i.fa.fa-ellipsis-h.navbar-icon-edit
-              ul.dropdown-menu.dropdown-alerts
-                li
-                  = link_to ('/') do
-                    |Редактировать
+nav#sidebar
+  .sidebar-header
+    .menu-spaceman
+      h3
+        | Коллекции
+        = link_to new_item_path do
+          .fa.fa-plus-circle.sidebar-main-element
+  ul.list-unstyled.components
+    .sidebar-search
+      .input-group.custom-search-form
+        input.form-control type="text" placeholder="Поиск..."
+          span.input-group-btn
+            button.btn.btn-default type="button"
+              .fa.fa-search
+    - @resource.each do |resource|
+      li.active
+        = link_to item_path(resource) do
+          i.fa.fa-database
+          span.navbar-icon
+          = "   #{resource.name}"
+            / li.dropdown
+            /   = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'false' do
+            /     i.fa.fa-ellipsis-h.navbar-icon-edit
+            /   ul.dropdown-menu.dropdown-user
+            /     li
+            /       = link_to ('/') do
+            /         |Редактировать
+        - resource.childrens.each do |folder|
+          ul#homeSubmenu.collapse.list-unstyled
+            li
+              = link_to item_path(folder) do
+                i.fa.fa-folder.navbar-icon
+                = " #{folder.name}"
+                li.dropdown
+                  = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'true' do
+                  i.fa.fa-ellipsis-h.navbar-icon-edit
+                  ul.dropdown-menu.dropdown-alerts
+                    li
+                      = link_to ('/') do
+                        |Редактировать
+      / li
+      /   a href="#"  Home 1
+      / li
+      /   a href="#"  Home 2
+      / li
+      /   a href="#"  Home 3
+  / li
+  /   a href="#"  About
+  /   a aria-expanded="false" data-toggle="collapse" href="#pageSubmenu"  Pages
+  /   ul#pageSubmenu.collapse.list-unstyled
+  /     li
+  /       a href="#"  Page 1
+  /     li
+  /       a href="#"  Page 2
+  /     li
+  /       a href="#"  Page 3
+  / li
+  /   a href="#"  Portfolio
+  / li
+  /   a href="#"  Contact
+  / ul.list-unstyled.CTAs
+  /   li
+  /     a.article href="https://bootstrapious.com/p/bootstrap-sidebar"  Back to the article
 
 
