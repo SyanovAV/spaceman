@@ -110,7 +110,7 @@ a[aria-expanded="true"] {
 }
 
 a[data-toggle="collapse"] {
-  position: relative;
+  //position: relative;
 }
 
 a[aria-expanded="false"]::before,
@@ -192,6 +192,7 @@ a.article:hover {
   width: 80%;
   margin-left: auto;
   margin-right: auto;
+  padding-bottom: 10px;
 }
 
 .sidebar-main-element {
@@ -201,6 +202,10 @@ a.article:hover {
   //margin-right: auto
   float: right;
   margin-top: 9px;
+}
+
+.sidebar-icon {
+  margin-right: 10px;
 }
 
 .menu-spaceman {
