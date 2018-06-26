@@ -34,8 +34,8 @@
   </p>
 
   <p>
-    <%= form.hidden_field :collection_id, value: params[:collection_id] %><br>
-    <%= form.hidden_field :folder_id, value: params[:folder_id] %><br>
+    <%= form.hidden_field :item_id, value: params[:item_id] %><br>
+
   </p>
   <!--  <p>-->
   <!--    <%#= form.label :Method %><br>-->
@@ -47,4 +47,4 @@
   </p>
 <% end %>
 
-<%= link_to 'Назад', collection_requests_path(collection_id: params[:collection_id]) %>
+<%#= link_to 'Назад', request_path(item_id: params[:item_id]) %>
