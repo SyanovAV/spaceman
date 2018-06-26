@@ -8,19 +8,19 @@ class RequestsController < ApplicationController
   end
 
   def new
-    # @collection = Collection.find(params[:collection_id]).requests.new
-    @request = Request.new(item_id: params[:item_id])
+    @item = Item.find(params[:item_id])
+    @request = @item.requests.build
   end
 
   def edit
-    @request = Request.where(item_id: params[:item_id])
+    @request = Request.find(params[:id])
   end
 
   def update
     @request = Request.find(params[:id])
 
     if @request.update(request_params)
-      redirect_to item_requests_path(@request, item_id: params[:item_id])
+      redirect_to request_path(@request, item_id: params[:item_id])
     else
       render 'requests/edit'
     end
@@ -35,7 +35,8 @@ class RequestsController < ApplicationController
 
 
   def create
-    @request = Request.new(request_params)
+    @item = Item.find(request_params[:item_id])
+    @request = @item.requests.build(request_params)
     if @request.save
       redirect_to item_requests_path(item_id: params[:item_id])
     else

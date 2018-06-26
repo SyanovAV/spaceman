@@ -3,5 +3,6 @@ html
   head
     = render 'layouts/application/head'
     = render 'layouts/application/navbar'
-    / = render 'navigation/body_items'
-    = yield
+    div.wrapper
+      = render 'navigation/body_items'
+      = yield

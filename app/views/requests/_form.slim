@@ -1,4 +1,4 @@
-= simple_form_for [:item, @request], local: true do |form|
+= simple_form_for [@item, @request], local: true do |form|
   - if @request.errors.any?
     #error_explanation
       h2
@@ -21,10 +21,10 @@
     = form.text_area :description
   p
     = form.label :Headers
-    br/
+    br
     = form.input :raw_headers
 
-    = form.hidden_field :item_id, value: params[:item_id]
-    br/
+    = form.hidden_field :item_id
+    br
   p
      
