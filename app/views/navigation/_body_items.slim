@@ -13,11 +13,10 @@ nav#sidebar
             button.btn.btn-default type="button"
               .fa.fa-search
     - @collection.each do |resource|
-      li.active
-        = link_to item_path(resource) do
-          i.fa.fa-database
-          span.navbar-icon
-          = "   #{resource.name}"
+      li
+        a href="#submenu#{resource.id}" data-toggle="collapse" aria-expanded="false"
+          i.fa.fa-database.sidebar-icon
+          = "#{resource.name}"
             / li.dropdown
             /   = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'false' do
             /     i.fa.fa-ellipsis-h.navbar-icon-edit
@@ -26,18 +25,18 @@ nav#sidebar
             /       = link_to ('/') do
             /         |Редактировать
         - resource.childrens.each do |folder|
-          ul#homeSubmenu.collapse.list-unstyled
+          ul.collapse.list-unstyled id="submenu#{resource.id}"
             li
-              = link_to item_path(folder) do
-                i.fa.fa-folder.navbar-icon
-                = " #{folder.name}"
-                li.dropdown
-                  = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'true' do
-                  i.fa.fa-ellipsis-h.navbar-icon-edit
-                  ul.dropdown-menu.dropdown-alerts
-                    li
-                      = link_to ('/') do
-                        |Редактировать
+              a href="#submenutwo#{resource.id}&#{folder.id}" data-toggle="collapse" aria-expanded="false"
+                i.fa.fa-folder.sidebar-icon
+                = "#{folder.name}"
+                  / span
+                  /   a.dropdown-toggle href="#submenu#{resource.id}" data-toggle="dropdown" aria-expanded="false"
+                  /     i.fa.fa-ellipsis-h.navbar-icon-edit
+                  /     ul.dropdown-menu.dropdown-alerts
+                  /       li
+                  /         = link_to ('/') do
+                  /           |Редактировать
       / li
       /   a href="#"  Home 1
       / li
