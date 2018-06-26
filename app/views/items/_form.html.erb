@@ -21,7 +21,9 @@
     <%= form.label :Описание %><br>
     <%= form.text_area :description %>
   </p>
-
+  <p>
+  <%= form.hidden_field item_id: params[:item_id]%>
+  </p>
   <p>
     <%= form.submit %>
   </p>
