@@ -54,6 +54,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'capistrano', '~> 3.4.1'
   gem 'capistrano-docker', github: 'netguru/capistrano-docker'
+  gem 'rails_db', '2.0.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
