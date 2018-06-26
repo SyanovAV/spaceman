@@ -8,7 +8,7 @@ table
     tr
       td= link_to request.name, request_path(request)
       td= request.description
-      td= link_to 'Открыть', request_path(item_id: params[:item_id], request)
+      td= link_to 'Открыть', request_path(request, item_id: params[:item_id])
       td= link_to 'Редактировать', edit_request_path(request, item_id: params[:item_id])
       td= link_to 'Удалить', request_path(request, item_id: params[:item_id]), method: :delete, data: {confirm: 'Ты хорошо подумал?'}
 = link_to 'Создать новый запрос', new_item_request_path(item_id: params[:item_id])
