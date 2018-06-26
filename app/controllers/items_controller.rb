@@ -9,12 +9,12 @@ class ItemsController < ApplicationController
 
   def new
     @resource = Item.find_or_initialize_by(id: params[:item_id])
-    @item = @resource.item.build
+    @item = @resource.childrens.build
   end
 
   def create
-    @resource = Item.find_or_initialize_by(id: item_params[:item_id])
-    @item = @resource.requests.build(item_params)
+    @item_parent = Item.find_or_initialize_by(id: item_params[:item_id])
+    @item = @item_parent.childrens.build(item_params)
 
     if @item.save
       redirect_to @item

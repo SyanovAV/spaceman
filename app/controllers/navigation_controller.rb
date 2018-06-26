@@ -2,7 +2,7 @@ class NavigationController < ApplicationController
 
   def show
     @resource = Item.all
-    @resources = @resource.tags.map{ |x| x.collections.where.not(id: params[:id]) }.flatten.uniq
+    @resources = @resource.tags.map{ |x| x.childrens.where.not(id: params[:id]) }.flatten.uniq
 
     return redirect_to action: 'index'
     render stream: true if stale? @resource
