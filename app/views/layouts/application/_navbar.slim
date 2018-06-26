@@ -1,31 +1,65 @@
 div id='wrapper'
-  nav#navbar-example2.navbar.navbar-light.bg-light
-    = link_to ('Spaceman v1.0'), url_for(:only_path => false, :controller => 'description'), class: ('navbar-brand')
-    ul.nav.nav-pills
-      li.nav-item
-        a.nav-link href="#fat"  @fat
-      li.nav-item
-        a.nav-link href="#mdo"  @mdo
-      li.nav-item.dropdown
-        a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"  Dropdown
-        .dropdown-menu
-          a.dropdown-item href="#one"  one
-          a.dropdown-item href="#two"  two
-          .dropdown-divider role="separator"
-          a.dropdown-item href="#three"  three
+  nav#navbar
+    .navbar.navbar-light.navbar-default-space
+      h3
+        = link_to ('Spaceman v1.0'), url_for(:only_path => false, :controller => 'description')
+    / button#sidebarCollapse.btn.btn-info.navbar-btn type="button"
+    /   i.glyphicon.glyphicon-align-left
+    /   span Toggle Sidebar
+    / ul.nav.nav-pills
+    /   li.nav-item
+    /     a.nav-link href="#fat"  @fat
+    /   li.nav-item
+    /     a.nav-link href="#mdo"  @mdo
+    /   li.nav-item.dropdown
+    /     a.nav-link.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" href="#" role="button"  Dropdown
+    /     .dropdown-menu
+    /       a.dropdown-item href="#one"  one
+    /       a.dropdown-item href="#two"  two
+    /       .dropdown-divider role="separator"
+    /       a.dropdown-item href="#three"  three
 
-.navbar-default.sidebar.navbar-default-space
-  .sidebar-nav.navbar-collapse
-    ul.nav id="side-menu"
-      li.sidebar-search
-        .input-group.custom-search-form
-          input.form-control type="text" placeholder="Поиск..."
-          span.input-group-btn
-            button.btn.btn-default type="button"
-              .fa.fa-search
-      li
-        .navbar-no-action
-          h3 Коллекции:
-          .navbar-main-element
-            = link_to '<i class="fa fa-plus-circle"></i>'.html_safe, new_item_path
-      = render 'navigation/body_items'
+= render 'navigation/body_items'
+
+  /! Sidebar Holder
+
+  /! Page Content Holder
+  / #content
+  /
+
+        / #bs-example-navbar-collapse-1.collapse.navbar-collapse
+        /   ul.nav.navbar-nav.navbar-right
+        /     li
+        /       a href="#"  Page
+        /     li
+        /       a href="#"  Page
+        /     li
+        /       a href="#"  Page
+        /     li
+        /       a href="#"  Page
+    / h2 Collapsible Sidebar Using Bootstrap 3
+    / p.lead
+    /   | This pen is a part of a
+    /   a href="https://bootstrapious.com/p/bootstrap-sidebar"  Bootstrap sidebar tutorial
+    /   | from Bootstrapious.com. CC-BY licensed.
+    / p
+    /   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    /   | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    / p
+    /   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    /   | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    / .line
+    / h2 Lorem Ipsum Dolor
+    / p
+    /   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    /   | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    / .line
+    / h2 Lorem Ipsum Dolor
+    / p
+    /   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    /   | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    / .line
+    / h3 Lorem Ipsum Dolor
+    / p
+    /   | Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+    /   | dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
