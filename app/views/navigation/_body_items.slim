@@ -24,8 +24,8 @@ nav#sidebar
             /     li
             /       = link_to ('/') do
             /         |Редактировать
-        - resource.childrens.each do |folder|
-          ul.collapse.list-unstyled id="submenu#{resource.id}"
+        ul.collapse.list-unstyled id="submenu#{resource.id}"
+          - resource.childrens.each do |folder|
             li
               a href="#submenutwo#{resource.id}&#{folder.id}" data-toggle="collapse" aria-expanded="false"
                 i.fa.fa-folder.sidebar-icon

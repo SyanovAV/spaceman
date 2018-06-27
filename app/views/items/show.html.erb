@@ -10,5 +10,6 @@
   <%= @item.description %>
 </p>
 
+<%= link_to 'Добавить папку', new_item_path(parent_id: @item.id) %>
 <%= link_to 'Запросы', item_requests_path(@item) %>
 <%= link_to 'Назад', items_path %>

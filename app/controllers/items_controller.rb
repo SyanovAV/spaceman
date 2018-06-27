@@ -8,18 +8,18 @@ class ItemsController < ApplicationController
   end
 
   def new
-    @resource = Item.find_or_initialize_by(id: params[:item_id])
+    @resource = Item.find_or_initialize_by(id: params[:parent_id])
     @item = @resource.childrens.build
   end
 
   def create
-    @item_parent = Item.find_or_initialize_by(id: item_params[:item_id])
+    @item_parent = Item.find_or_initialize_by(id: item_params[:parent_id])
     @item = @item_parent.childrens.build(item_params)
 
     if @item.save
       redirect_to @item
     else
-      render 'new'
+      render :new
     end
   end
 
@@ -33,7 +33,7 @@ class ItemsController < ApplicationController
     if @item.update(item_params)
       redirect_to @item
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -45,9 +45,8 @@ class ItemsController < ApplicationController
   end
 
   private
+
   def item_params
-    params.require(:item).permit(:name, :description)
+    params.require(:item).permit(:name, :description, :parent_id)
   end
-
-
 end
