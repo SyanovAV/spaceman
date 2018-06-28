@@ -69,6 +69,8 @@ a:focus {
 
 #sidebar a,
 #sidebar a:hover,
+#sidebar.sidenav:hover,
+#sidebar.sidenav:focus,
 #sidebar a:focus {
   color: inherit;
 }
@@ -98,15 +100,15 @@ a:focus {
   display: block;
 }
 
-#sidebar ul li a:hover {
+#sidebar ul li .sidenav:hover {
   color: #7386D5;
   background: #fff;
 }
 
-#sidebar ul li.active > a,
-a[aria-expanded="true"] {
-  color: #fff;
-  background: #6d7fcc;
+#sidebar ul li.active > a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+
 }
 
 a[data-toggle="collapse"] {
@@ -212,6 +214,12 @@ a.article:hover {
   display: inline;
 }
 
+//.menu-spaceman-element {
+//  a {
+//    display: flex;
+//  }
+//}
+
 #navbar {
   .navbar-default-space {
     background-color: #6d7fcc;
@@ -221,4 +229,32 @@ a.article:hover {
   h3, a {
     color: #fff;
   }
+}
+.dropdown-btn, .sidenav a {
+  //  padding: 6px 8px 6px 16px;
+  //  text-decoration: none;
+  //  font-size: 20px;
+  //  //color: #818181;
+  //  display: block;
+  //  border: none;
+  //  background: none;
+  //  width: 100%;
+  text-align: left;
+  //  cursor: pointer;
+  //  outline: none;
+}
+
+.sidenav {
+  //height: 100%;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  ////background-color: #111;
+  overflow-x: hidden;
+  padding-top: auto;
+  display: inline-flex;
+  }
+.sidebar-icon-edit {
+  margin-top: 8px;
 }

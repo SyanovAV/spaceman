@@ -14,29 +14,45 @@ nav#sidebar
               .fa.fa-search
     - @collection.each do |resource|
       li
-        a href="#submenu#{resource.id}" data-toggle="collapse" aria-expanded="false"
-          i.fa.fa-database.sidebar-icon
-          = "#{resource.name}"
-            / li.dropdown
-            /   = link_to ('/'), class: 'dropdown-toggle', 'data-toggle' => 'dropdown', 'aria-expanded' => 'false' do
-            /     i.fa.fa-ellipsis-h.navbar-icon-edit
-            /   ul.dropdown-menu.dropdown-user
-            /     li
-            /       = link_to ('/') do
-            /         |Редактировать
+        .sidenav aria-expanded="false"
+          a href="#submenu#{resource.id}" data-toggle="collapse"
+            i.fa.fa-database.sidebar-icon
+            = "#{resource.name}"
+          i.fa.fa-ellipsis-h.sidebar-icon-edit.nav-link  aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
+            .dropdown-menu
+              a.dropdown-item href="#one"  one
+              a.dropdown-item href="#two"  two
+              .dropdown-divider role="separator"
+              a.dropdown-item href="#three"  three
+
+
+
+              ul.dropdown-menu.dropdown-user
+                li
+                  = link_to ('/') do
+                    |Редактировать
+            / a.dropdown href='#' data-toggle='dropdown' aria-expanded='false'
+              i.fa.fa-ellipsis-h.navbar-icon-edit
+                /
         ul.collapse.list-unstyled id="submenu#{resource.id}"
           - resource.childrens.each do |folder|
             li
-              a href="#submenutwo#{resource.id}&#{folder.id}" data-toggle="collapse" aria-expanded="false"
-                i.fa.fa-folder.sidebar-icon
-                = "#{folder.name}"
-                  / span
-                  /   a.dropdown-toggle href="#submenu#{resource.id}" data-toggle="dropdown" aria-expanded="false"
-                  /     i.fa.fa-ellipsis-h.navbar-icon-edit
-                  /     ul.dropdown-menu.dropdown-alerts
-                  /       li
-                  /         = link_to ('/') do
-                  /           |Редактировать
+              .sidenav aria-expanded="true"
+                a href="#submenutwo#{resource.id}&#{folder.id}" data-toggle="collapse"
+                  i.fa.fa-folder.sidebar-icon
+                  = "#{folder.name}"
+                    / span
+                    /   a.dropdown-toggle href="#submenu#{resource.id}" data-toggle="dropdown" aria-expanded="false"
+                    /     i.fa.fa-ellipsis-h.navbar-icon-edit
+                    /     ul.dropdown-menu.dropdown-alerts
+                    /       li
+                    /         = link_to ('/') do
+                    /           |Редактировать
+        / - @request.each do |request|
+        /   - if (request.item_id == resource.id) do
+        /   |sdsdsds
+        /   - else
+        /     |2dfdsfds
       / li
       /   a href="#"  Home 1
       / li
