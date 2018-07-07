@@ -29,8 +29,11 @@ class RequestsController < ApplicationController
   def destroy
     @request = Request.find(params[:id])
     @request.destroy
-
-    redirect_to item_requests_path(item_id: params[:item_id])
+    @parent_item = Item.find(@request.item_id)
+    if @parent_item.parent_id == nil
+      redirect_to item_path(id: @request.item_id)
+    else redirect_to item_path(id: @parent_item.parent_id)
+    end
   end
 
 
