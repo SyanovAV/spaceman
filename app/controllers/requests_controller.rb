@@ -41,7 +41,7 @@ class RequestsController < ApplicationController
     @item = Item.find(request_params[:item_id])
     @request = @item.requests.build(request_params)
     if @request.save
-      redirect_to item_requests_path(item_id: params[:item_id])
+      redirect_to request_path(item_id: params[:item_id])
     else
       render 'requests/new'
     end
