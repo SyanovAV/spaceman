@@ -3,78 +3,147 @@ nav#sidebar
     .menu-spaceman
       h3
         | Коллекции
-        = link_to new_item_path do
+        = link_to [:new, :item], remote: true do
           .fa.fa-plus-circle.sidebar-main-element
-  ul.list-unstyled.components
     .sidebar-search
       .input-group.custom-search-form
         input.form-control type="text" placeholder="Поиск..."
           span.input-group-btn
-            button.btn.btn-default type="button"
+            button.btn.btn-default.disabled type="button"
               .fa.fa-search
+  ul.list-unstyled.components
+
     - @collection.each do |resource|
       li
         .sidenav aria-expanded="false"
-          a href="#submenu#{resource.id}" data-toggle="collapse"
+          a.side-link href="#submenu#{resource.id}" data-toggle="collapse"
             i.fa.fa-database.sidebar-icon
-            = "#{resource.name}"
-          i.fa.fa-ellipsis-h.sidebar-icon-edit.nav-link  aria-haspopup="true" data-toggle="dropdown" href="#" role="button"
-            .dropdown-menu
-              a.dropdown-item href="#one"  one
-              a.dropdown-item href="#two"  two
-              .dropdown-divider role="separator"
-              a.dropdown-item href="#three"  three
+            = link_to item_path(resource), class: 'sidebar-link', remote: true
+              = "#{resource.name}"
+          = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
+            i.fa.fa-ellipsis-h.sidebar-icon-edit  aria-haspopup="true"
 
+          ul.dropdown-menu.dropdown-custom
+            li
+              = link_to [:new, :item, parent_id: resource.id], remote: true, class: 'dropdown-item dropdown-custom'  do
+                i.fa.fa-folder.sidebar-icon
+                | Создать папку
+            li
+              = link_to new_item_request_path(resource), class: 'dropdown-item dropdown-custom'
+                i.fa.fa-code.sidebar-icon
+                | Создать запрос
+            .dropdown-divider role="separator"
+            li
+              = link_to [:item, :quick_show, id: resource.id], remote: true, class: 'dropdown-item dropdown-custom'
+                i.fa.fa-info.sidebar-icon
+                | Описание
+            li
+              = link_to edit_item_path(resource), class: 'dropdown-item dropdown-custom'
+                i.fa.fa-edit.sidebar-icon
+                | Редактировать
+            li
+              = link_to item_path(resource), method: :delete, data: {confirm: 'Вы действительно хотите удалить коллекцию?' }, class: 'dropdown-item dropdown-custom'
+                i.fa.fa-trash-o.sidebar-icon
+                | Удалить
 
-
-              ul.dropdown-menu.dropdown-user
-                li
-                  = link_to ('/') do
-                    |Редактировать
-            / a.dropdown href='#' data-toggle='dropdown' aria-expanded='false'
-              i.fa.fa-ellipsis-h.navbar-icon-edit
-                /
-        ul.collapse.list-unstyled id="submenu#{resource.id}"
+        ul.collapse.list-unstyled.show id="submenu#{resource.id}"
           - resource.childrens.each do |folder|
             li
-              .sidenav aria-expanded="true"
-                a href="#submenutwo#{resource.id}&#{folder.id}" data-toggle="collapse"
-                  i.fa.fa-folder.sidebar-icon
+              .sidenav.sidenav-two aria-expanded="true"
+                a.sidebar-two href="#submenutwo#{folder.id}" data-toggle="collapse"
+                  - if folder.requests.count == 0
+                    i.fa.fa-folder-o.sidebar-icon
+                  - else
+                    i.fa.fa-folder.sidebar-icon
+                    i.fa.fa-folder-open.sidebar-icon
                   = "#{folder.name}"
-                    / span
-                    /   a.dropdown-toggle href="#submenu#{resource.id}" data-toggle="dropdown" aria-expanded="false"
-                    /     i.fa.fa-ellipsis-h.navbar-icon-edit
-                    /     ul.dropdown-menu.dropdown-alerts
-                    /       li
-                    /         = link_to ('/') do
-                    /           |Редактировать
-        / - @request.each do |request|
-        /   - if (request.item_id == resource.id) do
-        /   |sdsdsds
-        /   - else
-        /     |2dfdsfds
-      / li
-      /   a href="#"  Home 1
-      / li
-      /   a href="#"  Home 2
-      / li
-      /   a href="#"  Home 3
-  / li
-  /   a href="#"  About
-  /   a aria-expanded="false" data-toggle="collapse" href="#pageSubmenu"  Pages
-  /   ul#pageSubmenu.collapse.list-unstyled
-  /     li
-  /       a href="#"  Page 1
-  /     li
-  /       a href="#"  Page 2
-  /     li
-  /       a href="#"  Page 3
-  / li
-  /   a href="#"  Portfolio
-  / li
-  /   a href="#"  Contact
-  / ul.list-unstyled.CTAs
-  /   li
-  /     a.article href="https://bootstrapious.com/p/bootstrap-sidebar"  Back to the article
+                = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
+                  i.fa.fa-ellipsis-h.sidebar-icon-edit-child aria-haspopup="true"
+                ul.dropdown-menu.dropdown-custom
+                  li
+                    = link_to new_item_request_path(folder), class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-code.sidebar-icon
+                      | Создать запрос
+                  .dropdown-divider role="separator"
+                  li
+                    = link_to [:item, :quick_show, id: folder.id], remote: true, class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-info.sidebar-icon
+                      | Описание
+                  li
+                    = link_to edit_item_path(folder), class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-edit.sidebar-icon
+                      | Редактировать
+                  li
+                    = link_to item_path(folder), method: :delete, data: {confirm: 'Вы действительно хотите удалить папку?'}, class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-trash-o.sidebar-icon
+                      | Удалить
 
+              ul.collapse.list-unstyled  id="submenutwo#{folder.id}"
+                - folder.requests.each do |request|
+                  li
+                    .sidenav aria-expanded="true"
+                      = link_to request_path(request), class: 'sidebar-request', remote: true do
+                        .request-in-folder
+                          span class="sidebar-method-#{request.method}"
+                            = "#{request.method}"
+                          = " #{request.name}"
+                      = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
+                        i.fa.fa-ellipsis-h.sidebar-icon-edit
+                      ul.dropdown-menu.dropdown-custom
+                        li
+                          = link_to request_path(request), class: 'dropdown-item dropdown-custom'
+                            i.fa.fa-info.sidebar-icon
+                            | Открыть
+                        li
+                          = link_to edit_request_path(request), class: 'dropdown-item dropdown-custom'
+                            i.fa.fa-edit.sidebar-icon
+                            | Редактировать
+                        li
+                          = link_to request_path(request), method: :delete, data: {confirm: 'Вы действительно хотите удалить папку?'}, class: 'dropdown-item dropdown-custom'
+                            i.fa.fa-trash-o.sidebar-icon
+                            | Удалить
 
+          - resource.requests.each do |request|
+            li
+              .sidenav aria-expanded="true"
+                = link_to request_path(request), class: 'sidebar-request', remote: true do
+                  span class="sidebar-method-#{request.method}"
+                    = "#{request.method}"
+                  = " #{request.name}"
+                = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
+                  i.fa.fa-ellipsis-h aria-haspopup="true"
+                ul.dropdown-menu.dropdown-custom
+                  li
+                    = link_to request_path(request), class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-info.sidebar-icon
+                      | Открыть
+                  li
+                    = link_to edit_request_path(request), class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-edit.sidebar-icon
+                      | Редактировать
+                  li
+                    = link_to request_path(request), method: :delete, data: {confirm: 'Вы действительно хотите удалить папку?'}, class: 'dropdown-item dropdown-custom'
+                      i.fa.fa-trash-o.sidebar-icon
+                      | Удалить
+
+/! Modal new item
+#newItem.modal.fade aria-hidden="true" aria-labelledby="newItemTitle" role="dialog" tabindex="-1"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      .modal-header
+        h5#newItemTitle.modal-title Создание новой коллекции
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+
+/! Modal show item
+#showItem.modal.fade aria-hidden="true" aria-labelledby="showItemTitle" role="dialog" tabindex="-1"
+  .modal-dialog.modal-dialog-centered role="document"
+    .modal-content
+      .modal-header
+        h5#showItemTitle.modal-title
+        button.close aria-label="Close" data-dismiss="modal" type="button"
+          span aria-hidden="true"  &times;
+      .modal-body
+      .modal-footer
+        button.btn.btn-secondary data-dismiss="modal" type="button"  Закрыть

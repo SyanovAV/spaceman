@@ -1,2 +1,13 @@
-#body_items
-  = render 'body_items'
+#content
+  .container
+    .page-header
+      h1
+        div#submenu'@resource.id'
+          i.fa.fa-database.sidebar-icon
+          = @resource.name
+      p
+        = @resource.description
+
+
+/ #body_items
+/   = render 'body_items'
