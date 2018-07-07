@@ -1,0 +1,8 @@
+h1 Просмотр запроса
+p
+  strong Название:
+  = @request.name
+p
+  strong Описание:
+  = @request.description
+/ = link_to 'Назад', item_requests_path(item_id: params[:item_id])
