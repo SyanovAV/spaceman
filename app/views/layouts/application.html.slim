@@ -5,4 +5,5 @@ html
     = render 'layouts/application/navbar'
     div.wrapper
       = render 'navigation/body_items'
-      = yield
+      #content.container data-spy="scroll" data-target="#sidebar" data-offset="0"
+        = yield

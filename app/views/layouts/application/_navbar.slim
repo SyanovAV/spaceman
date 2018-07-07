@@ -1,7 +1,14 @@
 nav#navbar
   .navbar.navbar-light.navbar-default-space
     h3
-      = link_to ('Spaceman v1.0'), url_for(:only_path => false, :controller => 'description')
+      = link_to ('Spaceman v0.1'), url_for(:only_path => false, :controller => 'description'), remote: true
+    .form-group
+      / label for="environment" Окружение
+      select.form-control#environment
+        option
+        option SHR dev
+        option SHR stage
+        option SHR prod
   / button#sidebarCollapse.btn.btn-info.navbar-btn type="button"
   /   i.glyphicon.glyphicon-align-left
   /   span Toggle Sidebar
