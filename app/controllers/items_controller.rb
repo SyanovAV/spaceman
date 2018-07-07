@@ -7,19 +7,24 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def new
-    @resource = Item.find_or_initialize_by(id: params[:parent_id])
-    @item = @resource.childrens.build
+  def quick_show
+    @item = Item.find(params[:id])
   end
+
+  def new; end
 
   def create
     @item_parent = Item.find_or_initialize_by(id: item_params[:parent_id])
     @item = @item_parent.childrens.build(item_params)
 
     if @item.save
-      redirect_to @item
+      if @item.parent_id == nil
+        redirect_to @item
+      else
+        redirect_to @item_parent
+      end
     else
-      render :new
+      render 'items/new', :remote => true
     end
   end
 
@@ -31,17 +36,23 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
 
     if @item.update(item_params)
-      redirect_to @item
+      if @item.parent_id == nil
+        redirect_to @item
+      else
+        redirect_to item_path(id: @item.parent_id)
+      end
     else
-      render :edit
+      render 'items/edit', :remote => true
     end
   end
 
   def destroy
     @item = Item.find(params[:id])
     @item.destroy
-
-    redirect_to items_path
+    if @item.parent_id == nil
+      redirect_to :root
+    else redirect_to item_path(id: @item.parent_id)
+    end
   end
 
   private
