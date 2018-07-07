@@ -1,0 +1,13 @@
+.modal-body
+  - if @view_item.parent_id == nil
+    h4
+      | Название:
+  - else
+    h4.folder
+      | Название:
+  h5
+    = @view_item.name
+  p
+    strong Описание:
+    br
+    = @view_item.description

@@ -1,0 +1,15 @@
+.page-header
+  h1
+    |Название коллекции:
+    = @item.name
+  p
+    |Описание:
+    strong
+      = @item.description
+
+- @item.childrens.each do |folder|
+  p
+    = folder.name
+  - folder.requests.each do |request|
+    p
+      = request.name

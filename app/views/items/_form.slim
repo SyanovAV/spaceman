@@ -1,0 +1,23 @@
+= simple_form_for @item, local: true do |form|
+  - if @item.errors.any?
+    #error_explanation
+      h2
+        = pluralize(@item.errors.count, "ошибки")
+        | при сохранении:
+      ul
+        - @item.errors.full_messages.each do |msg|
+          li= msg
+  p
+    = form.label :Название
+    br
+    = form.text_field :name
+  p
+    = form.label :Описание
+    br
+    = form.text_area :description
+  p
+    = form.hidden_field :parent_id, value: @item.parent_id || params[:parent_id]
+  .modal-footer
+    = form.submit :class => "btn btn-primary", :value => "Cохранить"
+    span
+    button.btn.btn-secondary data-dismiss="modal" type="button"  Закрыть
