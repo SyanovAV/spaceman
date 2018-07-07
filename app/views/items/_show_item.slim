@@ -1,15 +1,56 @@
 .page-header
-  h1
-    |Название коллекции:
-    = @item.name
-  p
-    |Описание:
+  h1#title
     strong
+      = @item.name
+  - if @item.description.present?
+    .description-collection
+      h5
+        strong
+          |Описание коллекции:
+
       = @item.description
+  hr
 
 - @item.childrens.each do |folder|
-  p
-    = folder.name
-  - folder.requests.each do |request|
-    p
-      = request.name
+
+  .folder
+    h4
+      i.fa.fa-folder-open.folder-icon
+      |&nbsp;
+      = folder.name
+  - if folder.description.present?
+    p.folder = folder.description
+  - folder.requests.each do |request, index|
+    .item-request
+      hr.request
+      = link_to [:request, id: request.id]
+        h5
+          i.fa.fa-chevron-circle-right.request-icon
+          |&nbsp;
+          span class="request-method-#{request.method}" = request.method
+          |&nbsp;
+          span.request-name
+            = request.name
+        - if request.description.present?
+          p = request.description
+      / pre
+      /   code.hljs.curl.makefile
+      /     span dfdfdffd
+        / hr.request
+      / - if (index+1)==folder.requests.length
+      /   hr
+  hr
+
+- @item.requests.each do |request|
+  .item-request
+    = link_to [:request, id: request.id]
+      h5
+        i.fa.fa-chevron-circle-right.request-icon
+        |&nbsp;
+        span class="request-method-#{request.method}" = request.method
+        |&nbsp;
+        span.request-name
+          = request.name
+      - if request.description.present?
+        p = request.description
+  hr
