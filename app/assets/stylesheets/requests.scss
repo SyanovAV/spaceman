@@ -5,3 +5,38 @@
 .request-group {
     display: inline-flex;
 }
+
+.request-method-GET {
+  color: greenyellow;
+}
+.request-method-POST {
+  color: #ffc233;
+}
+
+.request-method-DEL {
+  color: red;
+}
+.request-method-PUT {
+  color: blue;
+}
+
+.request-icon, .folder-icon {
+  color: #6d7fcc;
+}
+
+.request-name {
+  color: #737373;
+}
+
+.item-request {
+  padding: 10px 60px;
+  p {
+    padding-left: 21px;
+    margin-bottom: 0px;
+  }
+}
+
+hr.request {
+  //margin-right: 20px;
+  //margin-left: 20px;
+}

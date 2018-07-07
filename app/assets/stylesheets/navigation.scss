@@ -124,7 +124,7 @@ ul.list-unstyled.components {
   display: block;
 }
 
-#sidebar ul div.sidenav:hover {
+#sidebar ul div.sidenav:hover, a.current {
   color: #7386D5;
   background: #fff;
   .sidebar-icon-edit {
