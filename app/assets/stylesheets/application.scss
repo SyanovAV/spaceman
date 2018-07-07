@@ -1,8 +1,11 @@
-
 @import "https://fonts.googleapis.com/icon?family=Material+Icons";
 @import 'bootstrap';
 @import "font-awesome";
 @import "navigation";
+
+body {
+  overflow-y: hidden;
+}
 
 //.sidebar-default-space {
 //    background-color: #e1e1e1;

@@ -1,12 +1,11 @@
 // Place all the styles related to the Navigation controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 /*
     DEMO STYLE
 */
-
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
 body {
   font-family: 'Poppins', sans-serif;
   background: #fafafa;
@@ -49,7 +48,6 @@ a:focus {
   margin: 40px 0;
 }
 
-
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -65,6 +63,32 @@ a:focus {
   background: #7386D5;
   color: #fff;
   transition: all 0.3s;
+  //min-height: auto;
+  height: 95vh;
+  //max-height: auto;
+}
+
+.sidebar-search {
+  margin-top: 25px;
+}
+
+ul.list-unstyled.components {
+  //overflow-y: scroll;
+  scrollbar-3dlight-color: #7386D5;
+  scrollbar-arrow-color: #7386D5;
+  scrollbar-track-color: #7386D5;
+  scrollbar-base-color: #7386D5;
+  scrollbar-face-color: #7386D5;
+  scrollbar-shadow-color: #7386D5;
+  scrollbar-highlight-color: #7386D5;
+  scrollbar-darkshadow-color: #7386D5;
+  &::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+  }
+  overflow-y: scroll;
+  height: 75vh;
+  //max-height: min-content;
 }
 
 #sidebar a,
@@ -100,24 +124,79 @@ a:focus {
   display: block;
 }
 
-#sidebar ul li .sidenav:hover {
+#sidebar ul div.sidenav:hover {
   color: #7386D5;
   background: #fff;
+  .sidebar-icon-edit {
+    i {
+      display: inline;
+    }
+  }
 }
 
-#sidebar ul li.active > a[aria-expanded="true"] {
-    color: #fff;
-    background: #6d7fcc;
-
+ul.show:hover {
+  //color: #7386D5;
+  //background: #fff;
 }
 
-a[data-toggle="collapse"] {
+div.sidenav-two.open {
+  i.fa.fa-folder.sidebar-icon {
+    display: none;
+  }
+
+  i.fa.fa-folder-open.sidebar-icon {
+    display: inline;
+  }
+}
+
+div.sidenav-two {
+  i.fa.fa-folder.sidebar-icon {
+    display: inline;
+  }
+
+  i.fa.fa-folder-open.sidebar-icon {
+    display: none;
+  }
+}
+
+i.fa.fa-ellipsis-h.sidebar-icon-edit > ul.dropdown-menu.dropdown-custom.show::before {
+  display: none;
+}
+
+i.fa.fa-chevron-circle-up {
+  display: inline;
+}
+
+div.sidenav {
+  i.fa.fa-chevron-circle-down {
+    display: inline;
+  }
+
+  i.fa.fa-chevron-circle-up {
+    display: none;
+  }
+}
+
+#sidebar ul li.active > a {
+  color: #fff;
+  background: #6d7fcc;
+}
+
+//#sidebar div.sidenav > ul.show,
+//div.sidenav[aria-expanded="false"]> ul.show
+//{
+//  color: #fff;
+//  background: #6d7fcc;
+//}
+
+a[data-toggle="collapse"], .sidenav:hover {
   //position: relative;
+  //ontent: '\e259';
 }
 
 a[aria-expanded="false"]::before,
 a[aria-expanded="true"]::before {
-  content: '\e259';
+  //content: '\e259';
   display: block;
   position: absolute;
   right: 20px;
@@ -126,13 +205,13 @@ a[aria-expanded="true"]::before {
 }
 
 a[aria-expanded="true"]::before {
-  content: '\e260';
+  //content: '\e260';
 }
 
 ul ul a {
   font-size: 0.9em !important;
   padding-left: 30px !important;
-  background: #6d7fcc;
+  //background: #6d7fcc;
 }
 
 ul.CTAs {
@@ -158,21 +237,25 @@ a.article:hover {
   color: #fff !important;
 }
 
-
 /* ---------------------------------------------------
     CONTENT STYLE
 ----------------------------------------------------- */
 
 #content {
   padding: 20px;
-  min-height: 100vh;
+  min-height: 90vh;
   transition: all 0.3s;
+  max-height: 90vh;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+    overflow: hidden;
+  }
 }
 
 #content p a {
   //color:
 }
-
 
 /* ---------------------------------------------------
     MEDIAQUERIES
@@ -223,14 +306,15 @@ a.article:hover {
 #navbar {
   .navbar-default-space {
     background-color: #6d7fcc;
-    border-color: #47748b;
+    border: 3px #47748b;
     margin-bottom: auto;
   }
   h3, a {
     color: #fff;
   }
 }
-.dropdown-btn, .sidenav a {
+
+.dropdown-btn, .sidenav > a.side-link[data-toggle="collapse"] {
   //  padding: 6px 8px 6px 16px;
   //  text-decoration: none;
   //  font-size: 20px;
@@ -238,11 +322,13 @@ a.article:hover {
   //  display: block;
   //  border: none;
   //  background: none;
-  //  width: 100%;
+  width: 12%;
   text-align: left;
   //  cursor: pointer;
   //  outline: none;
 }
+
+//a[data-toggle="collapse"]{
 
 .sidenav {
   //height: 100%;
@@ -254,7 +340,99 @@ a.article:hover {
   overflow-x: hidden;
   padding-top: auto;
   display: inline-flex;
-  }
+}
+
 .sidebar-icon-edit {
-  margin-top: 8px;
+  margin: auto auto auto auto;
+  //padding-right: 10px;
+  i {
+    display: none;
+  }
+}
+
+.sidebar-icon-edit, .sidebar-icon-edit-child {
+  margin: auto 20px auto auto;
+}
+
+i.sidebar-icon-edit {
+  //margin: 20px auto auto auto;
+  //padding-right: 10px;
+
+}
+
+.sidebar-request {
+  .request-in-folder {
+    padding-left: 15px;
+  }
+  margin-right: 5px;
+  .sidebar-method-GET {
+    color: greenyellow;
+  }
+  .sidebar-method-POST {
+    color: #ffc233;
+  }
+
+}
+
+//.dropdown-custom {
+//  align-content: center;
+//  //display: block;
+//  //margin-left: auto;
+//  //margin-right: auto;
+//}
+
+ul.dropdown-custom {
+  .dropdown-divider {
+    height: 1px;
+    border-bottom: 1px solid #7386D5;
+  }
+  //padding-bottom: 50px;
+  margin-bottom: auto;
+  margin-top: 40px;
+  align-content: center;
+  border-color: #7386D5;
+  border-width: 2.5px;
+  //display: block;
+  //margin-left: auto;
+  //margin-right: auto;
+  a {
+    align-content: center;
+    color: #7386D5 !important;
+    padding: 0 20px 0 20px !important;
+  }
+
+  li a:hover {
+    color: white !important;
+  }
+  li :hover {
+    background: #6d7fcc !important;
+  }
+  &:last-child .dropdown-custom {
+    bottom: 0;
+    top: auto;
+  }
+}
+
+.scroll {
+  //margin-left: 30px;
+  //float: left;
+  //height: 300px;
+  //width: 65px;
+  //background: #fff;
+  //overflow-y: scroll;
+  //margin-bottom: 25px;
+  max-height: 100px;
+  overflow-y: scroll;
+}
+
+.sidebar-link, a.sidebar-request {
+  width: 75%;
+}
+
+a.sidebar-two {
+  width: 90%;
+}
+
+a.sidebar-icon-edit {
+  width: 15%;
 }
