@@ -1,4 +1,4 @@
-= simple_form_for @item, local: true do |form|
+= simple_form_for @item, local: true, remote: true do |form|
   - if @item.errors.any?
     #error_explanation
       h2

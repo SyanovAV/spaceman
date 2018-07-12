@@ -1,6 +1,6 @@
 .page-header
-  h1#title
-    strong
+  h1
+    strong.item-name id="item#{@item.id}"
       = @item.name
   - if @item.description.present?
     .description-collection
@@ -9,7 +9,7 @@
           |Описание коллекции:
 
       = @item.description
-  hr
+  hr.folder-hr
 
 - @item.childrens.each do |folder|
 
@@ -21,11 +21,36 @@
   - if folder.description.present?
     p.folder = folder.description
   - folder.requests.each do |request, index|
-    .item-request
-      hr.request
-      = link_to [:request, id: request.id]
+    hr.request
+    .item-request id="request#{request.id}"
+      .item-request-card
+        = link_to [:request, id: request.id], remote: true, class: 'request-card' do
+          .request-group-card
+            h5
+              i.fa.fa-share.request-icon
+              |&nbsp;
+              span class="request-method-#{request.method}" = request.method
+              |&nbsp;
+              span.request-name
+                = request.name
+            - if request.description.present?
+              p = request.description
+          / .open-card-request
+          /   i.fa.fa-chevron-circle-right.card
+      / pre
+      /   code.hljs.curl.makefile
+      /     span dfdfdffd
+        / hr.request
+      / - if (index+1)==folder.requests.length
+      /   hr
+  hr.folder-hr
+
+- @item.requests.each do |request|
+  .item-request id="request#{request.id}"
+    = link_to [:request, id: request.id], remote: true, class: 'request-card' do
+      .request-group-card
         h5
-          i.fa.fa-chevron-circle-right.request-icon
+          i.fa.fa-share.request-icon
           |&nbsp;
           span class="request-method-#{request.method}" = request.method
           |&nbsp;
@@ -33,24 +58,4 @@
             = request.name
         - if request.description.present?
           p = request.description
-      / pre
-      /   code.hljs.curl.makefile
-      /     span dfdfdffd
-        / hr.request
-      / - if (index+1)==folder.requests.length
-      /   hr
-  hr
-
-- @item.requests.each do |request|
-  .item-request
-    = link_to [:request, id: request.id]
-      h5
-        i.fa.fa-chevron-circle-right.request-icon
-        |&nbsp;
-        span class="request-method-#{request.method}" = request.method
-        |&nbsp;
-        span.request-name
-          = request.name
-      - if request.description.present?
-        p = request.description
-  hr
+  hr.folder-hr

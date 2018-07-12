@@ -1,1 +1,5 @@
-$('#content.container').html("<%= j (render 'items/show_item') %>");
+$('#block-left').empty();
+setTimeout(function() { $('#block-left').html("<%= j (render 'items/show_item') %>") }, 100)
+$('.block-left').css('width','100%')
+$('.block-right').css('display','none')
+$('.block-right').empty();
