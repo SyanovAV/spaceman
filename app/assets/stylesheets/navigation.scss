@@ -87,7 +87,9 @@ ul.list-unstyled.components {
     overflow: hidden;
   }
   overflow-y: scroll;
-  height: 75vh;
+  height: 62vh;
+  box-shadow: inset -2px -5px 18px 10px #7386D5;
+  border-radius: 10px;
   //max-height: min-content;
 }
 
@@ -106,6 +108,7 @@ ul.list-unstyled.components {
 #sidebar .sidebar-header {
   padding: 20px;
   background: #6d7fcc;
+  border-radius: 10px;
 }
 
 #sidebar ul.components {
@@ -124,9 +127,10 @@ ul.list-unstyled.components {
   display: block;
 }
 
-#sidebar ul div.sidenav:hover, a.current {
+#sidebar ul div.sidenav:hover, .sidenav.active {
   color: #7386D5;
   background: #fff;
+  transition: 0.2s;
   .sidebar-icon-edit {
     i {
       display: inline;
@@ -235,6 +239,7 @@ a.article,
 a.article:hover {
   background: #6d7fcc !important;
   color: #fff !important;
+  transition: 0.2s;
 }
 
 /* ---------------------------------------------------
@@ -242,15 +247,17 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-  padding: 20px;
+  padding: 50px;
+  max-width: 1400px;
   min-height: 90vh;
   transition: all 0.3s;
   max-height: 90vh;
-  overflow-y: scroll;
-  &::-webkit-scrollbar {
-    display: none;
-    overflow: hidden;
-  }
+  //overflow-y: scroll;
+  //&::-webkit-scrollbar {
+  //  display: none;
+  //  overflow-y: hidden;
+  //  position: fixed;
+  //}
 }
 
 #content p a {
@@ -386,9 +393,11 @@ ul.dropdown-custom {
     height: 1px;
     border-bottom: 1px solid #7386D5;
   }
-  //padding-bottom: 50px;
-  margin-bottom: auto;
-  margin-top: 40px;
+  position: relative;
+  //padding-top: 150px;
+  //padding-top: auto;
+  margin-left: auto;
+  margin-right: 45px;
   align-content: center;
   border-color: #7386D5;
   border-width: 2.5px;
@@ -403,14 +412,21 @@ ul.dropdown-custom {
 
   li a:hover {
     color: white !important;
+    transition: 0.2s;
   }
   li :hover {
     background: #6d7fcc !important;
   }
   &:last-child .dropdown-custom {
     bottom: 0;
+
     top: auto;
   }
+}
+
+.dropdown-top {
+  margin-bottom: auto !important;
+  margin-top: -180px !important;
 }
 
 .scroll {
