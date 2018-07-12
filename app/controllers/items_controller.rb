@@ -24,7 +24,7 @@ class ItemsController < ApplicationController
         redirect_to @item_parent
       end
     else
-      render 'items/new', :remote => true
+      render :new
     end
   end
 

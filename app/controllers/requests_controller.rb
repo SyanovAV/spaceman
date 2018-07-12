@@ -5,6 +5,7 @@ class RequestsController < ApplicationController
 
   def show
     @request = Request.find(params[:id])
+    @item = @request.item&.parent || @request.item
   end
 
   def new
