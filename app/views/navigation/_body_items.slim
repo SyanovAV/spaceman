@@ -15,10 +15,10 @@ nav#sidebar
 
     - @collection.each do |resource|
       li
-        .sidenav aria-expanded="false"
+        .sidenav aria-expanded="false" id="item#{resource.id}"
           a.side-link href="#submenu#{resource.id}" data-toggle="collapse"
             i.fa.fa-database.sidebar-icon
-            = link_to item_path(resource), class: 'sidebar-link', remote: true
+            = link_to item_path(resource), class: 'sidebar-link menu-link', remote: true
               = "#{resource.name}"
           = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
             i.fa.fa-ellipsis-h.sidebar-icon-edit  aria-haspopup="true"
@@ -49,8 +49,8 @@ nav#sidebar
         ul.collapse.list-unstyled.show id="submenu#{resource.id}"
           - resource.childrens.each do |folder|
             li
-              .sidenav.sidenav-two aria-expanded="true"
-                a.sidebar-two href="#submenutwo#{folder.id}" data-toggle="collapse"
+              .sidenav.sidenav-two aria-expanded="true" id="submenutwo#{folder.id}"
+                a.sidebar-two href="#" data-toggle="collapse"
                   - if folder.requests.count == 0
                     i.fa.fa-folder-o.sidebar-icon
                   - else
@@ -81,12 +81,14 @@ nav#sidebar
               ul.collapse.list-unstyled  id="submenutwo#{folder.id}"
                 - folder.requests.each do |request|
                   li
-                    .sidenav aria-expanded="true"
+                    .sidenav aria-expanded="true" id="request#{request.id}"
                       = link_to request_path(request), class: 'sidebar-request', remote: true do
                         .request-in-folder
                           span class="sidebar-method-#{request.method}"
                             = "#{request.method}"
-                          = " #{request.name}"
+                            |&nbsp;
+                          span.sidebar-name-request
+                            = "#{request.name}"
                       = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
                         i.fa.fa-ellipsis-h.sidebar-icon-edit
                       ul.dropdown-menu.dropdown-custom
@@ -105,11 +107,13 @@ nav#sidebar
 
           - resource.requests.each do |request|
             li
-              .sidenav aria-expanded="true"
+              .sidenav aria-expanded="true" id="request#{request.id}"
                 = link_to request_path(request), class: 'sidebar-request', remote: true do
                   span class="sidebar-method-#{request.method}"
                     = "#{request.method}"
-                  = " #{request.name}"
+                    |&nbsp;
+                  span.sidebar-name-request
+                    = "#{request.name}"
                 = link_to '#', data: {toggle: 'dropdown'}, class: 'sidebar-icon-edit', 'aria-haspopup'=>'true'
                   i.fa.fa-ellipsis-h aria-haspopup="true"
                 ul.dropdown-menu.dropdown-custom
