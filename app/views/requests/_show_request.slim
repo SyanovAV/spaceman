@@ -1,8 +1,10 @@
 h1 Просмотр запроса
 p
   strong Название:
+  span.request-card-name id="request#{@request.id}"
   = @request.name
 p
   strong Описание:
   = @request.description
 / = link_to 'Назад', item_requests_path(item_id: params[:item_id])
+button.close-request aria-label="Close" type="button" Закрыть

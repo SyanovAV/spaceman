@@ -1,1 +1,4 @@
-$('#content.container').html("<%= j (render 'show_request') %>");
+$('.block-right').html("<%= j (render 'show_request') %>");
+$('.block-left').html("<%= j (render 'items/show_item') %>");
+$('.block-left').css('width','50%')
+$('.block-right').css('display','block')
