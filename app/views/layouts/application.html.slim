@@ -5,5 +5,8 @@ html
     = render 'layouts/application/navbar'
     div.wrapper
       = render 'navigation/body_items'
-      #content.container data-spy="scroll" data-target="#sidebar" data-offset="0"
-        = yield
+      #content.container
+        #block-left.block-left
+          = yield
+        .space-content
+        .block-right
