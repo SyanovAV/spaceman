@@ -3,7 +3,16 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .request-group {
-    display: inline-flex;
+
+  display: inline-flex;
+  width: 100%;
+  height: 55px;
+  
+}
+
+#send.btn.btn-primary, #save.btn.btn-primary {
+  height: 55px;
+  margin: 15px, 15px, 15px, 15px;
 }
 
 .request-method-GET {

@@ -1,4 +1,4 @@
-= simple_form_for [@item, @request], local: true do |form|
+ = simple_form_for [@item, @request], local: true do |form|
   - if @request.errors.any?
     #error_explanation
       h2
@@ -7,24 +7,43 @@
       ul
         - @request.errors.full_messages.each do |msg|
           li= msg
+  div#response    
   = form.input :name
+  = form.input :description
+  
   div.request-group
-    select
-      option GET
-      option POST
-      option PATCH
-      option DELETE
-    = form.input :url
-    button Send 
-    = form.submit 'Save'
-  p
-    = form.text_area :description
-  p
-    = form.label :Headers
-    br
-    = form.input :raw_headers
+    .input-group.mb-3
+      .input-group-prepend
+        button.btn.btn-outline-secondary.dropdown-toggle aria-expanded="false" aria-haspopup="true" data-toggle="dropdown" type="button"  Type
+        .dropdown-menu
+          a.dropdown-item href="#"  GET
+          a.dropdown-item href="#"  POST
+          a.dropdown-item href="#"  PATCH
+          a.dropdown-item href="#"  DELETE
+      = form.input :url, :id => "url", :class => "form-control", :type => "text", :placeholder => "URL", :label => false
+        
+      .input-group-append
+        button.btn.btn-outline-secondary type="button" aria-controls="requestParams" aria-expanded="false" data-target="#requestParams" data-toggle="collapse"  Params
 
-    = form.hidden_field :item_id
-    br
-  p
-     
+   
+    button#send.btn.btn-primary type="button"  Send
+    = content_tag :button, :type => 'submit', :class => 'btn btn-primary', :id => 'save' do
+      | Save
+
+  #requestParams.collapse.multi-collapse
+      .card.card-body
+        | Тут будут лежать параметры запросов
+
+  nav
+  #nav-tab.nav.nav-tabs role="tablist" 
+    a#nav-home-tab.nav-item.nav-link.active aria-controls="headers" aria-selected="true" data-toggle="tab" href="#nav-home" role="tab"  headers
+    a#nav-profile-tab.nav-item.nav-link aria-controls="body" aria-selected="false" data-toggle="tab" href="#nav-profile" role="tab"  body
+    a#nav-contact-tab.nav-item.nav-link aria-controls="examples" aria-selected="false" data-toggle="tab" href="#nav-contact" role="tab"  examples
+  #nav-tabContent.tab-content
+    #nav-home.tab-pane.fade.show.active aria-labelledby="headers" role="tabpanel"  Тут будут лежать хэдеры
+    #nav-profile.tab-pane.fade aria-labelledby="body" role="tabpanel" 
+      #jsoneditor
+    #nav-contact.tab-pane.fade aria-labelledby="examples" role="tabpanel" Тут будут другие примеры запросов
+
+
+  

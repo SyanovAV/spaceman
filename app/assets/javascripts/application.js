@@ -15,3 +15,7 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+//= require jsoneditor
+
+// Or use the minimalist version instead
+//= require jsoneditor-minimalist
