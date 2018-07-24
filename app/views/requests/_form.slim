@@ -1,4 +1,7 @@
- = simple_form_for [@item, @request], local: true do |form|
+- if @request.new_record?
+  - path = [@item, @request]
+- else (path = @request)
+= simple_form_for path, local: true do |form|
   - if @request.errors.any?
     #error_explanation
       h2
@@ -7,20 +10,20 @@
       ul
         - @request.errors.full_messages.each do |msg|
           li= msg
-  div#response    
+  div#response
   = form.input :name
   = form.input :description
-  
+
   div.request-group
     .input-group.mb-3
       .input-group-prepend
         = select_tag(:method, options_for_select(["GET", "POST", "PUT", "PATCH", "DELETE"]), :id => "request_method")
       = form.input :url, :class => "form-control", :type => "text", :placeholder => "URL", :label => false
-        
+      = form.hidden_field :item_id
       .input-group-append
         button.btn.btn-outline-secondary type="button" aria-controls="requestParams" aria-expanded="false" data-target="#requestParams" data-toggle="collapse"  Params
 
-   
+
     button#send.btn.btn-primary type="button"  Send
     = content_tag :button, :type => 'submit', :class => 'btn btn-primary', :id => 'save' do
       | Save
@@ -28,39 +31,39 @@
   #requestParams.collapse.multi-collapse
       .card.card-body
         table.table.table-bordered
-          tr 
+          tr
             td
             td Key
             td Value
             td Description
           tr
-  
+
   br
-    
+
   .card
     nav
-    #nav-tab.nav.nav-tabs role="tablist" 
+    #nav-tab.nav.nav-tabs role="tablist"
       a#nav-headers-tab.nav-item.nav-link.active aria-controls="headers" aria-selected="true" data-toggle="tab" href="#nav-headers" role="tab"  headers
       a#nav-body-tab.nav-item.nav-link aria-controls="body" aria-selected="false" data-toggle="tab" href="#nav-body" role="tab"  body
       a#nav-examples-tab.nav-item.nav-link aria-controls="examples" aria-selected="false" data-toggle="tab" href="#nav-examples" role="tab"  examples
     #nav-tabContent.tab-content
       #nav-headers.tab-pane.fade.show.active aria-labelledby="headers" role="tabpanel" Тут будут лежать хэдеры
-      #nav-body.tab-pane.fade aria-labelledby="body" role="tabpanel" 
+      #nav-body.tab-pane.fade aria-labelledby="body" role="tabpanel"
         div#jsoneditor-request-body
       #nav-examples.tab-pane.fade aria-labelledby="examples" role="tabpanel" Тут будут другие примеры запросов
-  
+
   br
 
   .card
     nav
-    #nav-tab.nav.nav-tabs role="tablist" 
+    #nav-tab.nav.nav-tabs role="tablist"
       a#nav-pretty-tab.nav-item.nav-link.active aria-controls="pretty" aria-selected="true" data-toggle="tab" href="#nav-pretty" role="tab"  pretty
       a#nav-raw-tab.nav-item.nav-link aria-controls="raw" aria-selected="false" data-toggle="tab" href="#nav-raw" role="tab"  raw
       a#nav-preview-tab.nav-item.nav-link aria-controls="preview" aria-selected="false" data-toggle="tab" href="#nav-preview" role="tab"  preview
     #nav-tabContent.tab-content
-      #nav-pretty.tab-pane.fade.show.active aria-labelledby="pretty" role="tabpanel"  
+      #nav-pretty.tab-pane.fade.show.active aria-labelledby="pretty" role="tabpanel"
         div#jsoneditor-pretty-response
-      #nav-raw.tab-pane.fade aria-labelledby="raw" role="tabpanel" 
+      #nav-raw.tab-pane.fade aria-labelledby="raw" role="tabpanel"
         div#response-raw-block
       #nav-preview.tab-pane.fade aria-labelledby="preview" role="tabpanel"
         div#response-preview-block
