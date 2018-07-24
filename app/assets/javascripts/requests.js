@@ -12,7 +12,7 @@ $('document').ready(function() {
           console.log('Mode switched from', oldMode, 'to', newMode);
         }
     };
-    var requestBodyEditor = new JSONEditor(requestBodyContainer, requestEditorOptions);
+    // var requestBodyEditor = new JSONEditor(requestBodyContainer, requestEditorOptions);
 
 
     var prettyResponseContainer = document.getElementById("jsoneditor-pretty-response");
@@ -47,7 +47,7 @@ $('document').ready(function() {
             });
             $.get( urlString/*, {paramOne : 1, paramX : 'abc'}*/,
                 function(data) {
-                    
+
                     console.log(data);
                 }
             )
